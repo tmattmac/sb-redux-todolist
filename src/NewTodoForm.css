@@ -1,0 +1,8 @@
+.NewTodoForm {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.NewTodoForm input {
+    flex-grow: 2;
+}

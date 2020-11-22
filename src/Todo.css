@@ -1,0 +1,31 @@
+.Todo {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 0.25em;
+}
+
+.Todo:nth-child(2n-1) {
+    background-color: #eeeeee;
+}
+
+.Todo-text {
+    flex-grow: 2;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.Todo-completed {
+    text-decoration: line-through;
+    color: #555555;
+}
+
+.Todo-text form {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.Todo-text input {
+    width: 100%;
+}

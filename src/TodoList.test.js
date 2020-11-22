@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
-import App from './App';
+import TodoList from './TodoList';
 
 test('renders', () => {
-  render(<App />);
+  render(<TodoList />);
 });
 
 test('render matches snapshot', () => {
-  const { asFragment } = render(<App />);
+  const { asFragment } = render(<TodoList />);
   expect(asFragment()).toMatchSnapshot();
 });

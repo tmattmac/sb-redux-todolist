@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Todo"
+  >
+    <input
+      name="completed"
+      type="checkbox"
+    />
+    <div
+      class="Todo-text"
+    >
+      <span>
+        test
+      </span>
+    </div>
+    <button>
+      Delete
+    </button>
+  </div>
+</DocumentFragment>
+`;
