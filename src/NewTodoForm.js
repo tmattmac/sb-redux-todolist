@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './NewTodoForm.css';
+import { v4 as uuid } from 'uuid';
 
-function NewTodoForm({ addTodo }) {
+function NewTodoForm() {
     const [formData, setFormData] = useState({ text: '' });
-    const form = useRef(null);
+    const dispatch = useDispatch()
     
     const handleChange = e => {
         const { name, value } = e.target;
@@ -12,21 +14,29 @@ function NewTodoForm({ addTodo }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        addTodo(formData);
+        dispatch({
+            type: 'ADD_TODO',
+            payload: {
+                todo: {
+                    id: uuid(),
+                    completed: false,
+                    text: formData.text
+                }
+            }
+        });
         setFormData({ text: '' });
     };
 
     return (
-        <form className="NewTodoForm" onSubmit={handleSubmit} ref={form} data-testid="form">
+        <form className="NewTodoForm" onSubmit={handleSubmit} data-testid="form">
             <input
                 type="text"
                 placeholder="Add todo text here"
                 name="text"
                 value={formData.text}
                 onChange={handleChange}
-                required
             />
-            <button>Add</button>
+            <button disabled={!Boolean(formData.text)}>Add</button>
         </form>
     );
 }

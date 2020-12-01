@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import './Todo.css';
 
-function Todo({ text, completed, update, remove }) {
+function Todo({ id, text, completed }) {
     const [editing, setEditing] = useState(false);
     const todoInput = useRef(null);
+    const dispatch = useDispatch();
     
     // TODO: Make sure this doesn't cause issues when multiple being edited
     useEffect(() => {
@@ -11,21 +13,38 @@ function Todo({ text, completed, update, remove }) {
     }, [todoInput, editing]);
 
     const handleChange = () => {
-        update({ text, completed: !completed });
+        dispatch({
+            type: 'UPDATE_TODO',
+            payload: {
+                id,
+                todo: { completed: !completed }
+            }
+        });
     };
 
     const handleSubmit = e => {
         e.preventDefault();
         setEditing(false);
         const newText = todoInput.current.value;
-        update({ completed, text: newText });
+        dispatch({
+            type: 'UPDATE_TODO',
+            payload: {
+                id,
+                todo: { text: newText }
+            }
+        });
     };
 
     const handleEditText = () => {
         setEditing(true);
     };
 
-    const handleDelete = remove;
+    const handleDelete = () => {
+        dispatch({
+            type: 'REMOVE_TODO',
+            payload: { id }
+        });
+    };
 
     const todoTextDisplay = (
         editing ?
